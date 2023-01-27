@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -7,12 +6,12 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit {
   dataSource: any;
   gridModel: any;
 
-  ngAfterViewInit() {
-    this.dataSource = ELEMENT_DATA;
+  ngOnInit() {
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
     this.gridModel = GridModel;
   }
 }
