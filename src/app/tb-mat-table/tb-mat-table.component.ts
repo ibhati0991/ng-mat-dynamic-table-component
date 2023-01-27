@@ -19,7 +19,7 @@ export class TbMatTableComponent implements OnChanges, AfterViewInit {
 
   @Input() gridModel: any;
   @Input() dataSource: any;
-  @Input() totalCount: number = 10;
+  @Input() totalCount: number;
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.dataSource.currentValue) {
