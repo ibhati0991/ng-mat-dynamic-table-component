@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   Input,
   OnChanges,
@@ -13,15 +14,24 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './tb-mat-table.component.html',
   styleUrls: ['./tb-mat-table.component.css'],
 })
-export class TbMatTableComponent implements OnChanges {
+export class TbMatTableComponent implements OnChanges, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
   @Input() gridModel: any;
-  @Input() dataSource: MatTableDataSource<any>;
+  @Input() dataSource: any;
+  @Input() totalCount: number = 10;
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.dataSource.currentValue) {
       this.dataSource.paginator = this.paginator;
     }
+    if (changes.totalCount) {
+      this.paginator.length = this.totalCount;
+    }
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   get rowParameter() {
