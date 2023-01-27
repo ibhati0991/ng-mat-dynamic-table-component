@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { AppComponent } from './app.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { TbMatTableComponent } from './tb-mat-table/tb-mat-table.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatPaginatorModule,
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, TbMatTableComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
