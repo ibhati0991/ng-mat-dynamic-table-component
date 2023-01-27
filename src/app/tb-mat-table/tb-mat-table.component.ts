@@ -9,7 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-tb-mat-table',
+  selector: 'tb-mat-table',
   templateUrl: './tb-mat-table.component.html',
   styleUrls: ['./tb-mat-table.component.css'],
 })

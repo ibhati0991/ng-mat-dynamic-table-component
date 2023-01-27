@@ -8,16 +8,12 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @Input() gridModel: any = GridModel;
-  @Input() dataSource: any = new MatTableDataSource<any>(ELEMENT_DATA);
+  dataSource: any;
+  gridModel: any;
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
-
-  get rowParameter() {
-    return GridModel.map((i) => i.rowParameter);
+    this.dataSource = ELEMENT_DATA;
+    this.gridModel = GridModel;
   }
 }
 
