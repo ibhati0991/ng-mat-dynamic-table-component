@@ -2,7 +2,9 @@ import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
+const CellTypeENUM = {
+  date: 'date',
+};
 @Component({
   selector: 'tb-mat-table',
   templateUrl: './tb-mat-table.component.html',
@@ -13,7 +15,7 @@ export class TbMatTableComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @Input() gridModel: any;
   @Input() dataSource = new MatTableDataSource<any>([]);
-  @Input() dataService :any;
+  @Input() dataService: any;
   @Input() totalCount: number;
 
   ngAfterViewInit() {

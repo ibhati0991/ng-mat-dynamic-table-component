@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
+const CellTypeENUM = {
+  date: 'date',
+};
+
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -17,10 +21,11 @@ export class AppComponent implements OnInit {
 }
 
 const GridModel = [
-  { title: 'assessment_category', rowParameter: 'assessment_category' },
+  { title: 'Category', rowParameter: 'assessment_category' },
   { title: 'Value', rowParameter: 'value' },
   { title: 'Name', rowParameter: 'name.first_name' },
   { title: 'Memberships', rowParameter: 'memberships' },
+  { title: 'Date', rowParameter: 'date_recorded', cellType: CellTypeENUM.date },
 ];
 
 const ELEMENT_DATA: any[] = [
