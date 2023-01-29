@@ -1,4 +1,12 @@
 <div class="mat-elevation-z1">
+  <mat-form-field fill="outline">
+    <mat-label>Select Columns</mat-label>
+    <mat-select [(value)]="defaultColumns" #columns="matSelect" multiple>
+      <mat-option *ngFor="let g of gridModel" [value]="g.rowParameter">
+        {{ g.title }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container [matColumnDef]="g.rowParameter" *ngFor="let g of gridModel">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ g.title }}</th>
@@ -12,8 +20,8 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="rowParameter"></tr>
-    <tr mat-row *matRowDef="let row; columns: rowParameter"></tr>
+    <tr mat-header-row *matHeaderRowDef="columns.value"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns.value"></tr>
   </table>
 
   <mat-paginator

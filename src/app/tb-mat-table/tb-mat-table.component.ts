@@ -18,10 +18,16 @@ export class TbMatTableComponent implements AfterViewInit {
   @Input() dataService: any;
   @Input() totalCount: number;
 
+  defaultColumns = [];
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.paginator.length = this.totalCount;
+
+    this.defaultColumns = this.gridModel
+      .filter((g) => g.default)
+      .map((g) => g.rowParameter);
   }
 
   get rowParameter() {

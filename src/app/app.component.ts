@@ -21,9 +21,9 @@ export class AppComponent implements OnInit {
 }
 
 const GridModel = [
-  { title: 'Category', rowParameter: 'assessment_category' },
-  { title: 'Value', rowParameter: 'value' },
-  { title: 'Name', rowParameter: 'name.first_name' },
+  { title: 'Category', rowParameter: 'assessment_category', default: true },
+  { title: 'Value', rowParameter: 'value', default: true },
+  { title: 'Name', rowParameter: 'name.first_name', default: true },
   { title: 'Memberships', rowParameter: 'memberships' },
   { title: 'Date', rowParameter: 'date_recorded', cellType: CellTypeENUM.date },
 ];
