@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-
-const CellTypeENUM = {
-  date: 'date',
-};
+import { CellType } from './constants';
 
 @Component({
   selector: 'my-app',
@@ -25,7 +22,7 @@ const GridModel = [
   { title: 'Value', rowParameter: 'value', default: true },
   { title: 'Name', rowParameter: 'name.first_name', default: true },
   { title: 'Memberships', rowParameter: 'memberships' },
-  { title: 'Date', rowParameter: 'date_recorded', cellType: CellTypeENUM.date },
+  { title: 'Date', rowParameter: 'date_recorded', cellType: CellType.date },
 ];
 
 const ELEMENT_DATA: any[] = [
