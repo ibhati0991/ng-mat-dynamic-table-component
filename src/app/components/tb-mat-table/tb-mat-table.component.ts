@@ -65,14 +65,14 @@ export class TbMatTableComponent implements OnInit, AfterViewInit {
     return element;
   }
 
-  getConcatinatedElementFromPath(row, g) {
-    let rowItem = row;
+  getConcatinatedElementFromPath(element, g) {
+    let rowItem = element;
     g.rowParameter.split('.').forEach((r) => {
       rowItem = rowItem[r];
     });
     let concatData;
     g.concatRowParameter.forEach((cr) => {
-      let concatItem = row;
+      let concatItem = element;
       cr.split('.').forEach((r) => {
         concatItem = concatItem[r];
       });
