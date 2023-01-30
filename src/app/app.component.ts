@@ -18,9 +18,24 @@ export class AppComponent implements OnInit {
 }
 
 const GridModel = [
-  { title: 'Category', rowParameter: 'assessment_category', default: true },
-  { title: 'Value', rowParameter: 'value', default: true },
-  { title: 'Name', rowParameter: 'name.first_name', default: true },
+  {
+    title: 'Category',
+    rowParameter: 'assessment_category',
+    cellType: CellType.text,
+    default: true,
+  },
+  {
+    title: 'Value',
+    rowParameter: 'value',
+    cellType: CellType.text,
+    default: true,
+  },
+  {
+    title: 'Name',
+    rowParameter: 'name.first_name',
+    cellType: CellType.text,
+    default: true,
+  },
   {
     title: 'EID',
     rowParameter: 'identification_ids',
@@ -29,7 +44,11 @@ const GridModel = [
     listRowParameter: 'id',
     default: true,
   },
-  { title: 'Memberships', rowParameter: 'memberships' },
+  {
+    title: 'Memberships',
+    cellType: CellType.text,
+    rowParameter: 'memberships',
+  },
   { title: 'Date', rowParameter: 'date_recorded', cellType: CellType.date },
 ];
 
