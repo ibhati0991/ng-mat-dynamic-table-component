@@ -14,7 +14,12 @@
     (matSortChange)="getGridItems(null, $event)"
   >
     <ng-container [matColumnDef]="g.rowParameter" *ngFor="let g of gridModel">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>
+      <th
+        mat-header-cell
+        mat-sort-header
+        [disabled]="!g.sortable"
+        *matHeaderCellDef
+      >
         <mat-checkbox
           *ngIf="g.cellType === cellType.select; else general"
           (change)="$event ? toggleAllRows() : null"
@@ -36,7 +41,8 @@
               date: date,
               list: list,
               text: text,
-              concat: concat
+              concat: concat,
+              image: image
             }[g.cellType]
           "
         >
@@ -75,6 +81,12 @@
         </ng-template>
         <ng-template #text>
           {{ getElementFromPath(element, g.rowParameter) }}
+        </ng-template>
+        <ng-template #image>
+          <img
+            [src]="getElementFromPath(element, g.rowParameter)"
+            alt="image"
+          />
         </ng-template>
       </td>
     </ng-container>

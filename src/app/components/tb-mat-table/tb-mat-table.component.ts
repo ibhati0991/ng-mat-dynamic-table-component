@@ -24,7 +24,7 @@ export class TbMatTableComponent implements OnInit {
   @Input() dataService: any;
   activeSort: Sort;
   totalCount = 0;
-  dataSource = new MatTableDataSource<any>([]);
+  dataSource: MatTableDataSource<any>;
   defaultColumns = [];
   cellType = CellType;
 
@@ -100,6 +100,7 @@ export class TbMatTableComponent implements OnInit {
     }
 
     this.selection.select(...this.dataSource.data);
+    console.log(this.selection.selected);
   }
 
   checkboxLabel(row?): string {

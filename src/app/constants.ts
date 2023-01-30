@@ -4,4 +4,5 @@ export const CellType = {
   date: 'date',
   list: 'list',
   concat: 'concat',
+  image: 'image',
 };
