@@ -1,6 +1,12 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CellType } from '../../constants';
 
@@ -9,13 +15,13 @@ import { CellType } from '../../constants';
   templateUrl: './tb-mat-table.component.html',
   styleUrls: ['./tb-mat-table.component.css'],
 })
-export class TbMatTableComponent implements OnInit {
+export class TbMatTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   @Input() gridModel: any;
   @Input() dataService: any;
-
+  activeSort: Sort;
   totalCount = 0;
   dataSource = new MatTableDataSource<any>([]);
   defaultColumns = [];
@@ -28,17 +34,24 @@ export class TbMatTableComponent implements OnInit {
     this.getGridItems();
   }
 
-  getGridItems(event?: PageEvent) {
+  ngAfterViewInit() {}
+
+  getGridItems(event?: PageEvent, sortEvent?: Sort) {
+    this.activeSort = sortEvent;
+    console.log(event);
+    console.log(sortEvent);
     this.dataService
       .getAllPartialValue(event?.pageIndex, event?.pageSize)
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         this.dataSource = new MatTableDataSource<any>(res['data']);
-        this.totalCount = res['total'];
-        this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        //this.paginator.length = res['total'];
+        this.totalCount = res['total'];
       });
+  }
+
+  sortData(event) {
+    console.log(event);
   }
 
   get rowParameter() {

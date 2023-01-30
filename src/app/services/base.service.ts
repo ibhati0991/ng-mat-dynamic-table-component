@@ -11,7 +11,7 @@ export class BaseService {
 
   getAllPartialValue(
     page_no = 0,
-    page_size = 2,
+    page_size = 10,
     sort_column?,
     sort_direction?,
     filters = []
@@ -22,6 +22,7 @@ export class BaseService {
         queryString +
         `&sort_column=${sort_column}&sort_direction=${sort_direction}`;
     }
+    //console.log(queryString);
     return this.http
       .get(`https://reqres.in/api/users?${queryString}`)
       .toPromise();

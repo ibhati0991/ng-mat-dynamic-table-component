@@ -7,9 +7,14 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    (matSortChange)="getGridItems(null, $event)"
+  >
     <ng-container [matColumnDef]="g.rowParameter" *ngFor="let g of gridModel">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ g.title }}</th>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>{{ g.title }}</th>
       <td mat-cell *matCellDef="let element">
         <ng-container
           *ngTemplateOutlet="
@@ -52,10 +57,10 @@
 
   <mat-paginator
     #paginator
-    [pageSizeOptions]="[2, 5, 10, 20, 50, 100, 150, 200]"
+    [pageSizeOptions]="[10, 20, 50, 100, 150, 200]"
     showFirstLastButtons
     [length]="totalCount"
-    (page)="getGridItems($event)"
+    (page)="getGridItems($event, activeSort)"
   >
   </mat-paginator>
 </div>
