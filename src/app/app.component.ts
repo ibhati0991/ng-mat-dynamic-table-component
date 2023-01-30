@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { CellType } from './constants';
+import { BaseService } from './services/base.service';
 
 @Component({
   selector: 'my-app',
@@ -10,6 +11,12 @@ import { CellType } from './constants';
 export class AppComponent implements OnInit {
   dataSource: any = [];
   gridModel: any;
+
+  constructor(private service: BaseService) {
+    this.service.getAllPartialValue(0, 10).then((res) => {
+      console.log(res);
+    });
+  }
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
