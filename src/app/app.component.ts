@@ -11,6 +11,12 @@ export class AppComponent {
   dataSource: any = [];
   gridModel = [
     {
+      title: 'Select',
+      rowParameter: 'select',
+      cellType: CellType.select,
+      default: true,
+    },
+    {
       title: 'ID',
       rowParameter: 'id',
       cellType: CellType.text,

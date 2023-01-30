@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import {
   AfterViewInit,
   Component,
@@ -15,7 +16,7 @@ import { CellType } from '../../constants';
   templateUrl: './tb-mat-table.component.html',
   styleUrls: ['./tb-mat-table.component.css'],
 })
-export class TbMatTableComponent implements OnInit, AfterViewInit {
+export class TbMatTableComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
@@ -34,8 +35,6 @@ export class TbMatTableComponent implements OnInit, AfterViewInit {
     this.getGridItems();
   }
 
-  ngAfterViewInit() {}
-
   getGridItems(event?: PageEvent, sortEvent?: Sort) {
     this.activeSort = sortEvent;
     console.log(event);
@@ -48,10 +47,6 @@ export class TbMatTableComponent implements OnInit, AfterViewInit {
         this.dataSource.sort = this.sort;
         this.totalCount = res['total'];
       });
-  }
-
-  sortData(event) {
-    console.log(event);
   }
 
   get rowParameter() {
@@ -88,5 +83,31 @@ export class TbMatTableComponent implements OnInit, AfterViewInit {
     const filterKey = Object.keys(listFilter)[0];
     element = element.filter((e) => e[filterKey] == listFilter[filterKey])[0];
     return element[listRowParameter];
+  }
+
+  selection = new SelectionModel<any>(true, []);
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
+  }
+
+  checkboxLabel(row?): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
+      row.position + 1
+    }`;
   }
 }

@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { BaseService } from './services/base.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatSortModule,
     MatPaginatorModule,
     MatFormFieldModule,
+    MatCheckboxModule,
     MatSelectModule,
     HttpClientModule,
   ],
