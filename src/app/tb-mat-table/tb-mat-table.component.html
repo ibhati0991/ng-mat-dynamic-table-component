@@ -12,15 +12,21 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ g.title }}</th>
       <td mat-cell *matCellDef="let element">
         <ng-container
-          *ngTemplateOutlet="{ date: date, list: list, text: text }[g.cellType]"
+          *ngTemplateOutlet="
+            {
+              date: date,
+              list: list,
+              text: text
+            }[g.cellType]
+          "
         >
         </ng-container>
         <ng-template #date>
           <span>
             {{
               getElementFromPath(element, g.rowParameter) | date: 'MM/dd/YYYY'
-            }}</span
-          >
+            }}
+          </span>
         </ng-template>
         <ng-template #list>
           <span>
