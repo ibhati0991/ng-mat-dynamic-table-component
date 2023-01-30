@@ -21,7 +21,8 @@
             {
               date: date,
               list: list,
-              text: text
+              text: text,
+              concat: concat
             }[g.cellType]
           "
         >
@@ -44,6 +45,9 @@
               )
             }}
           </span>
+        </ng-template>
+        <ng-template #concat>
+          {{ getConcatinatedElementFromPath(element, g) }}
         </ng-template>
         <ng-template #text>
           {{ getElementFromPath(element, g.rowParameter) }}

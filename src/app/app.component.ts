@@ -19,7 +19,8 @@ export class AppComponent {
     {
       title: 'First Name',
       rowParameter: 'first_name',
-      cellType: CellType.text,
+      concatRowParameter: ['last_name'],
+      cellType: CellType.concat,
       default: true,
     },
     {
