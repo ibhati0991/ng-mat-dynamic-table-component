@@ -26,7 +26,7 @@ export class AppComponent {
       title: 'Last Name',
       rowParameter: 'last_name',
       cellType: CellType.text,
-      default: true,
+      default: false,
     },
     {
       title: 'email',

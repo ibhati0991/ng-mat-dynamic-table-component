@@ -11,12 +11,12 @@ export class BaseService {
 
   getAllPartialValue(
     page_no = 0,
-    page_size = 25,
+    page_size = 2,
     sort_column?,
     sort_direction?,
     filters = []
   ) {
-    let queryString = `?page=${page_no}&per_page=${page_size}`;
+    let queryString = `?page=${page_no + 1}&per_page=${page_size}`;
     if (sort_column) {
       queryString =
         queryString +

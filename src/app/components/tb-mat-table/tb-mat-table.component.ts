@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CellType } from '../../constants';
@@ -9,33 +9,36 @@ import { CellType } from '../../constants';
   templateUrl: './tb-mat-table.component.html',
   styleUrls: ['./tb-mat-table.component.css'],
 })
-export class TbMatTableComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+export class TbMatTableComponent implements OnInit {
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   @Input() gridModel: any;
   @Input() dataService: any;
 
-  totalCount: number;
+  totalCount = 0;
   dataSource = new MatTableDataSource<any>([]);
   defaultColumns = [];
   cellType = CellType;
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    this.paginator.length = this.totalCount;
 
+  ngOnInit() {
     this.defaultColumns = this.gridModel
       .filter((g) => g.default)
       .map((g) => g.rowParameter);
-    this.getGridData();
+    this.getGridItems();
   }
 
-  getGridData(event?) {
-    this.dataService.getAllPartialValue(1, 10).then((res) => {
-      console.log(res);
-      this.dataSource = new MatTableDataSource<any>(res['data']);
-    });
+  getGridItems(event?: PageEvent) {
+    this.dataService
+      .getAllPartialValue(event?.pageIndex, event?.pageSize)
+      .then((res) => {
+        console.log(res);
+        this.dataSource = new MatTableDataSource<any>(res['data']);
+        this.totalCount = res['total'];
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        //this.paginator.length = res['total'];
+      });
   }
 
   get rowParameter() {

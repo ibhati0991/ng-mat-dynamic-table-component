@@ -51,8 +51,11 @@
   </table>
 
   <mat-paginator
-    [pageSizeOptions]="[10, 20, 50, 100, 150, 200]"
+    #paginator
+    [pageSizeOptions]="[2, 5, 10, 20, 50, 100, 150, 200]"
     showFirstLastButtons
+    [length]="totalCount"
+    (page)="getGridItems($event)"
   >
   </mat-paginator>
 </div>
