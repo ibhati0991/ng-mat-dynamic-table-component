@@ -2,7 +2,7 @@ import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { CellType } from '../constants';
+import { CellType } from '../../constants';
 
 @Component({
   selector: 'tb-mat-table',

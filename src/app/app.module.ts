@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { AppComponent } from './app.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { TbMatTableComponent } from './tb-mat-table/tb-mat-table.component';
+import { TbMatTableComponent } from './components/tb-mat-table/tb-mat-table.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 
