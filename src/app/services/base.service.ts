@@ -16,17 +16,14 @@ export class BaseService {
     sort_direction?,
     filters = []
   ) {
-    let queryString = `?page_no=${page_no}&page_size=${page_size}`;
+    let queryString = `?page=${page_no}&per_page=${page_size}`;
     if (sort_column) {
       queryString =
         queryString +
         `&sort_column=${sort_column}&sort_direction=${sort_direction}`;
     }
     return this.http
-      .post(
-        ` https://52.207.186.158:5000/v1/${this.apiController}/getAllPartialValue${queryString}`,
-        filters
-      )
+      .get(`https://reqres.in/api/users?${queryString}`)
       .toPromise();
   }
 }

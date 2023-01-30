@@ -8,6 +8,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { TbMatTableComponent } from './components/tb-mat-table/tb-mat-table.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { BaseService } from './services/base.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -18,8 +20,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatPaginatorModule,
     MatFormFieldModule,
     MatSelectModule,
+    HttpClientModule,
   ],
   declarations: [AppComponent, TbMatTableComponent],
   bootstrap: [AppComponent],
+  providers: [BaseService],
 })
 export class AppModule {}

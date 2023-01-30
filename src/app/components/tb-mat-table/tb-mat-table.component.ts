@@ -14,10 +14,10 @@ export class TbMatTableComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   @Input() gridModel: any;
-  @Input() dataSource = new MatTableDataSource<any>([]);
   @Input() dataService: any;
-  @Input() totalCount: number;
 
+  totalCount: number;
+  dataSource = new MatTableDataSource<any>([]);
   defaultColumns = [];
   cellType = CellType;
   ngAfterViewInit() {
@@ -28,6 +28,14 @@ export class TbMatTableComponent implements AfterViewInit {
     this.defaultColumns = this.gridModel
       .filter((g) => g.default)
       .map((g) => g.rowParameter);
+    this.getGridData();
+  }
+
+  getGridData(event?) {
+    this.dataService.getAllPartialValue(1, 10).then((res) => {
+      console.log(res);
+      this.dataSource = new MatTableDataSource<any>(res['data']);
+    });
   }
 
   get rowParameter() {
