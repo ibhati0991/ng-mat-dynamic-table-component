@@ -27,7 +27,7 @@ export class AppComponent {
     {
       title: 'Name',
       rowParameter: 'first_name',
-      concatRowParameter: ['first_name', 'last_name'],
+      concatRowParameter: ['last_name'],
       cellType: CellType.concat,
       default: true,
       sortable: true,
