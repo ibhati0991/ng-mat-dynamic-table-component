@@ -40,4 +40,13 @@ export class TbMatTableComponent implements AfterViewInit {
     });
     return element;
   }
+
+  getElementFromList(element, rowParameter, listFilter, listRowParameter) {
+    rowParameter.split('.').forEach((r) => {
+      element = element[r];
+    });
+    const filterKey = Object.keys(listFilter)[0];
+    element = element.filter((e) => e[filterKey] == listFilter[filterKey])[0];
+    return element[listRowParameter];
+  }
 }

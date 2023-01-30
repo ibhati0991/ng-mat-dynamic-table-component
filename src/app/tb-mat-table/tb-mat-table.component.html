@@ -14,6 +14,17 @@
         <span *ngIf="g.cellType === cellType.date; else general">
           {{ getElementFromPath(element, g.rowParameter) | date: 'MM/dd/YYYY' }}
         </span>
+        <span *ngIf="g.cellType === cellType.list; else general">
+          {{
+            getElementFromList(
+              element,
+              g.rowParameter,
+              g.listFilter,
+              g.listRowParameter
+            )
+          }}
+        </span>
+
         <ng-template #general>
           {{ getElementFromPath(element, g.rowParameter) }}
         </ng-template>

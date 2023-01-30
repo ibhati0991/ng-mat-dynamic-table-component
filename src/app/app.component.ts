@@ -21,6 +21,14 @@ const GridModel = [
   { title: 'Category', rowParameter: 'assessment_category', default: true },
   { title: 'Value', rowParameter: 'value', default: true },
   { title: 'Name', rowParameter: 'name.first_name', default: true },
+  {
+    title: 'EID',
+    rowParameter: 'identification_ids',
+    cellType: CellType.list,
+    listFilter: { name: 'EID' },
+    listRowParameter: 'id',
+    default: true,
+  },
   { title: 'Memberships', rowParameter: 'memberships' },
   { title: 'Date', rowParameter: 'date_recorded', cellType: CellType.date },
 ];
