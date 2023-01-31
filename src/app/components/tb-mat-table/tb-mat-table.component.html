@@ -1,12 +1,5 @@
 <div class="row">
-  <app-filter-sidebar
-    class="col-3"
-    [filterOptions]="filterOptions"
-    [filterName]="'/admin/view-people'"
-    [(filters)]="filters"
-    (filtersChange)="getGridItems(null, $event)"
-  ></app-filter-sidebar>
-  <div class="col-9">
+  <div class="col">
     <mat-form-field appearance="outline">
       <mat-label>Select Columns</mat-label>
       <mat-select [(value)]="defaultColumns" #columns="matSelect" multiple>
