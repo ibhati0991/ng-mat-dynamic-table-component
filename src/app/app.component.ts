@@ -113,14 +113,24 @@ export class AppComponent {
       sortable: true,
     },
   ];
+
   @ViewChild('selection') selectionTable: TbMatTableComponent;
+  @ViewChild('main') mainTable: TbMatTableComponent;
   selectedItems = [];
   constructor(public service: BaseService) {}
 
-  selectItems(event) {
-    this.selectedItems = event;
-    event.forEach((e) => {
+  selectMainItems(event) {
+    this.selectedItems.push(...event.added);
+    this.selectedItems.forEach((e) => {
+      console.log(e);
       this.selectionTable.selection.select(e);
+    });
+  }
+
+  selectionItems(event) {
+    console.log(event);
+    event.removed.forEach((e) => {
+      this.mainTable.selection.deselect(e);
     });
   }
 }

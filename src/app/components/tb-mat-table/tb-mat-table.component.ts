@@ -47,8 +47,8 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
       this.getGridItems();
     }
 
-    this.selection.changed.subscribe(() => {
-      this.selectionChange.emit(this.selection.selected);
+    this.selection.changed.subscribe((event) => {
+      this.selectionChange.emit(event);
     });
   }
 

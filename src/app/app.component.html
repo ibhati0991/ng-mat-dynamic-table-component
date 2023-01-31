@@ -4,11 +4,12 @@
   </div>
   <div class="col-6">
     <tb-mat-table
+      #main
       [showColumnSelector]="true"
       [showPaginator]="true"
       [dataService]="service"
       [gridModel]="gridModel"
-      (selectionChange)="selectItems($event)"
+      (selectionChange)="selectMainItems($event)"
     >
     </tb-mat-table>
   </div>
@@ -19,6 +20,7 @@
       [showPaginator]="false"
       [dataSource]="selectedItems"
       [gridModel]="selectionGridModel"
+      (selectionChange)="selectionItems($event)"
     >
     </tb-mat-table>
   </div>
