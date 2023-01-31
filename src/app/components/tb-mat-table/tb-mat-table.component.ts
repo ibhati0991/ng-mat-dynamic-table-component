@@ -3,9 +3,11 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -18,7 +20,7 @@ import { CellType } from '../../constants';
   templateUrl: './tb-mat-table.component.html',
   styleUrls: ['./tb-mat-table.component.css'],
 })
-export class TbMatTableComponent implements OnInit, OnDestroy {
+export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
@@ -36,9 +38,7 @@ export class TbMatTableComponent implements OnInit, OnDestroy {
   selection = new SelectionModel<any>(true, []);
 
   ngOnInit() {
-    if (this.dataSource) {
-      this.dataSource = new MatTableDataSource<any>(this.dataSource);
-    }
+    this.dataSource = new MatTableDataSource<any>([]);
     this.defaultColumns = this.gridModel
       .filter((g) => g.default)
       .map((g) => g.rowParameter);
@@ -47,9 +47,17 @@ export class TbMatTableComponent implements OnInit, OnDestroy {
       this.getGridItems();
     }
 
-    this.selection.changed.subscribe((event) => {
-      this.selectionChange.emit(event);
+    this.selection.changed.subscribe(() => {
+      this.selectionChange.emit(this.selection.selected);
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // console.log(changes);
+    if (changes.dataSource) {
+      this.dataSource = new MatTableDataSource<any>(this.dataSource);
+      this.dataSource.sort = this.sort;
+    }
   }
 
   ngOnDestroy() {
