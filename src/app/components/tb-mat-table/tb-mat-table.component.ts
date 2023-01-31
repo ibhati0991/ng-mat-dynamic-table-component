@@ -12,7 +12,6 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CellType } from '../../constants';
-import { Filter } from '../filter-sidebar/filter';
 
 @Component({
   selector: 'tb-mat-table',
@@ -28,7 +27,7 @@ export class TbMatTableComponent implements OnInit, OnDestroy {
   @Input() gridModel: any;
   @Input() dataService: any;
   @Input() activeSort: Sort;
-  @Input() dataSource = new MatTableDataSource<any>([]);
+  @Input() dataSource: any;
   @Output() selectionChange = new EventEmitter();
 
   totalCount = 0;
@@ -37,6 +36,9 @@ export class TbMatTableComponent implements OnInit, OnDestroy {
   selection = new SelectionModel<any>(true, []);
 
   ngOnInit() {
+    if (this.dataSource) {
+      this.dataSource = new MatTableDataSource<any>(this.dataSource);
+    }
     this.defaultColumns = this.gridModel
       .filter((g) => g.default)
       .map((g) => g.rowParameter);

@@ -113,5 +113,10 @@ export class AppComponent {
     },
   ];
 
+  selectedItems = [];
   constructor(public service: BaseService) {}
+
+  selectItems(event) {
+    console.log(event);
+  }
 }
