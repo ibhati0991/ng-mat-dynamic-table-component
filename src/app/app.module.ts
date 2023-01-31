@@ -12,6 +12,11 @@ import { BaseService } from './services/base.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FilterSidebarComponent } from './components/filter-sidebar/filter-sidebar.component';
+import { LocalStorageService } from './services/localstorage.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   imports: [
@@ -25,9 +30,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCheckboxModule,
     MatSelectModule,
     HttpClientModule,
+    MatCardModule,
+    MatTabsModule,
+    MatButtonToggleModule,
   ],
-  declarations: [AppComponent, TbMatTableComponent],
+  declarations: [AppComponent, TbMatTableComponent, FilterSidebarComponent],
   bootstrap: [AppComponent],
-  providers: [BaseService],
+  providers: [BaseService, LocalStorageService],
 })
 export class AppModule {}

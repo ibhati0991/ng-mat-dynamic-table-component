@@ -1,106 +1,115 @@
-<div class="mat-elevation-z1">
-  <mat-form-field appearance="outline">
-    <mat-label>Select Columns</mat-label>
-    <mat-select [(value)]="defaultColumns" #columns="matSelect" multiple>
-      <mat-option *ngFor="let g of gridModel" [value]="g.rowParameter">
-        {{ g.title }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    matSort
-    (matSortChange)="getGridItems(null, $event)"
-  >
-    <ng-container [matColumnDef]="g.rowParameter" *ngFor="let g of gridModel">
-      <th
-        mat-header-cell
-        mat-sort-header
-        [disabled]="!g.sortable"
-        *matHeaderCellDef
-      >
-        <mat-checkbox
-          *ngIf="g.cellType === cellType.select; else general"
-          (change)="$event ? toggleAllRows() : null"
-          [checked]="selection.hasValue() && isAllSelected()"
-          [indeterminate]="selection.hasValue() && !isAllSelected()"
-          [aria-label]="checkboxLabel()"
-          color="primary"
-        >
-        </mat-checkbox>
-        <ng-template #general>
+<div class="row">
+  <app-filter-sidebar
+    class="col-3"
+    [filterOptions]="filterOptions"
+    [filterName]="'/admin/view-people'"
+    [(filters)]="filters"
+    (filtersChange)="getGridItems(null, $event)"
+  ></app-filter-sidebar>
+  <div class="col-9">
+    <mat-form-field appearance="outline">
+      <mat-label>Select Columns</mat-label>
+      <mat-select [(value)]="defaultColumns" #columns="matSelect" multiple>
+        <mat-option *ngFor="let g of gridModel" [value]="g.rowParameter">
           {{ g.title }}
-        </ng-template>
-      </th>
-      <td mat-cell *matCellDef="let element">
-        <ng-container
-          *ngTemplateOutlet="
-            {
-              select: select,
-              date: date,
-              list: list,
-              text: text,
-              concat: concat,
-              image: image
-            }[g.cellType]
-          "
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      (matSortChange)="getGridItems(null, $event)"
+    >
+      <ng-container [matColumnDef]="g.rowParameter" *ngFor="let g of gridModel">
+        <th
+          mat-header-cell
+          mat-sort-header
+          [disabled]="!g.sortable"
+          *matHeaderCellDef
         >
-        </ng-container>
-        <ng-template #select>
           <mat-checkbox
-            (click)="$event.stopPropagation()"
-            (change)="$event ? selection.toggle(element) : null"
-            [checked]="selection.isSelected(element)"
-            [aria-label]="checkboxLabel(element)"
+            *ngIf="g.cellType === cellType.select; else general"
+            (change)="$event ? toggleAllRows() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+            [aria-label]="checkboxLabel()"
             color="primary"
           >
           </mat-checkbox>
-        </ng-template>
-        <ng-template #date>
-          <span>
-            {{
-              getElementFromPath(element, g.rowParameter) | date: 'MM/dd/YYYY'
-            }}
-          </span>
-        </ng-template>
-        <ng-template #list>
-          <span>
-            {{
-              getElementFromList(
-                element,
-                g.rowParameter,
-                g.listFilter,
-                g.listRowParameter
-              )
-            }}
-          </span>
-        </ng-template>
-        <ng-template #concat>
-          {{ getConcatinatedElementFromPath(element, g) }}
-        </ng-template>
-        <ng-template #text>
-          {{ getElementFromPath(element, g.rowParameter) }}
-        </ng-template>
-        <ng-template #image>
-          <img
-            [src]="getElementFromPath(element, g.rowParameter)"
-            alt="image"
-          />
-        </ng-template>
-      </td>
-    </ng-container>
+          <ng-template #general>
+            {{ g.title }}
+          </ng-template>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container
+            *ngTemplateOutlet="
+              {
+                select: select,
+                date: date,
+                list: list,
+                text: text,
+                concat: concat,
+                image: image
+              }[g.cellType]
+            "
+          >
+          </ng-container>
+          <ng-template #select>
+            <mat-checkbox
+              (click)="$event.stopPropagation()"
+              (change)="$event ? selection.toggle(element) : null"
+              [checked]="selection.isSelected(element)"
+              [aria-label]="checkboxLabel(element)"
+              color="primary"
+            >
+            </mat-checkbox>
+          </ng-template>
+          <ng-template #date>
+            <span>
+              {{
+                getElementFromPath(element, g.rowParameter) | date: 'MM/dd/YYYY'
+              }}
+            </span>
+          </ng-template>
+          <ng-template #list>
+            <span>
+              {{
+                getElementFromList(
+                  element,
+                  g.rowParameter,
+                  g.listFilter,
+                  g.listRowParameter
+                )
+              }}
+            </span>
+          </ng-template>
+          <ng-template #concat>
+            {{ getConcatinatedElementFromPath(element, g) }}
+          </ng-template>
+          <ng-template #text>
+            {{ getElementFromPath(element, g.rowParameter) }}
+          </ng-template>
+          <ng-template #image>
+            <img
+              [src]="getElementFromPath(element, g.rowParameter)"
+              alt="image"
+            />
+          </ng-template>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columns.value"></tr>
-    <tr mat-row *matRowDef="let row; columns: columns.value"></tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="columns.value"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns.value"></tr>
+    </table>
 
-  <mat-paginator
-    #paginator
-    [pageSizeOptions]="[10, 20, 50, 100, 150, 200]"
-    showFirstLastButtons
-    [length]="totalCount"
-    (page)="getGridItems($event, activeSort)"
-  >
-  </mat-paginator>
+    <mat-paginator
+      #paginator
+      [pageSizeOptions]="[10, 20, 50, 100, 150, 200]"
+      showFirstLastButtons
+      [length]="totalCount"
+      (page)="getGridItems($event, activeSort)"
+    >
+    </mat-paginator>
+  </div>
 </div>

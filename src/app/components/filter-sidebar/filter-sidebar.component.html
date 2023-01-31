@@ -1,0 +1,164 @@
+<div class="h-100">
+  <mat-card class="h-100">
+    <mat-card-content class="filters">
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Filters">
+          <div class="container-fluid my-2 px-0">
+            <ng-template
+              ngFor
+              let-filter
+              [ngForOf]="filters"
+              let-i="index"
+              [ngForTrackBy]="trackById"
+            >
+              <div class="row no-gutters">
+                <div class="col-12 col-lg-5 pr-1">
+                  <mat-form-field class="w-100">
+                    <mat-select
+                      aria-label="filter"
+                      role="listbox"
+                      [value]="filter.options.name"
+                      (selectionChange)="dropdownSelect($event, filter)"
+                      placeholder="Filter"
+                      (keyup)="checkEnter($event)"
+                    >
+                      <mat-option
+                        role="option"
+                        class="p-3"
+                        *ngFor="let option of dropdown"
+                        [value]="option"
+                        >{{ option }}</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-lg-4 pr-1">
+                  <mat-form-field class="w-100">
+                    <mat-select
+                      aria-label="operation"
+                      role="listbox"
+                      [(value)]="filter.comparator"
+                      (keyup)="checkEnter($event)"
+                    >
+                      <mat-option role="option" class="p-3" value="disabled"
+                        >disabled</mat-option
+                      >
+                      <mat-option role="option" class="p-3" value="includes"
+                        >includes</mat-option
+                      >
+                      <mat-option role="option" class="p-3" value="equals"
+                        >equals</mat-option
+                      >
+                      <mat-option role="option" class="p-3" value="greater"
+                        >greater</mat-option
+                      >
+                      <mat-option role="option" class="p-3" value="less"
+                        >less</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-lg-3">
+                  <mat-form-field class="w-100">
+                    <input
+                      aria-label="Query"
+                      matInput
+                      type="text"
+                      [(ngModel)]="filter.query"
+                      placeholder="Query"
+                      (keyup)="checkEnter($event)"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+          <div>
+            <button
+              aria-label="add filter"
+              mat-button
+              class="mb-2"
+              color="primary"
+              (click)="addFilter()"
+            >
+              + Add Filter
+            </button>
+          </div>
+        </mat-tab>
+        <mat-tab label="Saved Filters">
+          <div class="text-center my-2 px-0">
+            <button
+              aria-label="save filter"
+              mat-button
+              color="primary"
+              (click)="saveFilters()"
+            >
+              Save Filters
+            </button>
+            <br />
+            <button
+              aria-label="load filter"
+              mat-button
+              color="primary"
+              (click)="loadFilters()"
+            >
+              Load Filters
+            </button>
+            <br />
+            <button
+              aria-label="clear saved"
+              mat-button
+              color="primary"
+              (click)="clearSavedFilters()"
+            >
+              Clear Saved
+            </button>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+      <mat-button-toggle-group
+        *ngIf="condition"
+        class="ml-3 my-auto"
+        [ngModel]="condition"
+        (ngModelChange)="conditionChange.emit($event)"
+        name="fontStyle"
+        aria-label="Font Style"
+      >
+        <mat-button-toggle
+          color="primary"
+          class="w-100 d-flex align-items-center"
+          value="and"
+          >AND</mat-button-toggle
+        >
+        <mat-button-toggle
+          color="primary"
+          class="w-100 d-flex align-items-center"
+          value="or"
+          >OR</mat-button-toggle
+        >
+      </mat-button-toggle-group>
+      <button
+        aria-label="reset"
+        mat-button
+        color="primary"
+        class="position-absolute"
+        style="bottom: 0; left: 10px;"
+        (click)="resetFilters()"
+      >
+        Reset
+      </button>
+      <button
+        aria-label="apply filters"
+        mat-button
+        color="primary"
+        class="position-absolute"
+        style="bottom: 0; right: 10px;"
+        (click)="applyFilters()"
+      >
+        Apply Filters
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="triangle-right"></div>
+</div>

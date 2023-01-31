@@ -1,11 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -22,6 +16,9 @@ export class TbMatTableComponent implements OnInit {
 
   @Input() gridModel: any;
   @Input() dataService: any;
+  @Input() filterOptions: any;
+  @Input() filters = [];
+
   activeSort: Sort;
   totalCount = 0;
   dataSource: MatTableDataSource<any>;

@@ -9,6 +9,14 @@ import { BaseService } from './services/base.service';
 })
 export class AppComponent {
   dataSource: any = [];
+  filterOptions = {
+    persons: {
+      'First Name': ['name', 'first_name'],
+      'Middle Name': ['name', 'middle_name'],
+      'Last Name': ['name', 'last_name'],
+      Membership: ['memberships'],
+    },
+  };
   gridModel = [
     {
       title: 'Select',
