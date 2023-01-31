@@ -24,7 +24,7 @@ export class BaseService {
     }
     //console.log(queryString);
     return this.http
-      .get(`https://reqres.in/api/users?${queryString}`)
+      .get(`https://reqres.in/api/users${queryString}`)
       .toPromise();
   }
 }

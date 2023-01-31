@@ -1,13 +1,18 @@
 <div class="row">
-  <div class="col">
-    <mat-form-field appearance="outline">
+  <div class="col-12 px-2 pt-2" style="min-height:86px;">
+    <mat-form-field
+      [ngClass]="{ 'd-none': !showColumnSelector }"
+      appearance="outline"
+    >
       <mat-label>Select Columns</mat-label>
-      <mat-select [(value)]="defaultColumns" #columns="matSelect" multiple>
+      <mat-select [(ngModel)]="defaultColumns" multiple>
         <mat-option *ngFor="let g of gridModel" [value]="g.rowParameter">
           {{ g.title }}
         </mat-option>
       </mat-select>
     </mat-form-field>
+  </div>
+  <div class="col-12 px-2">
     <table
       mat-table
       [dataSource]="dataSource"
@@ -92,11 +97,12 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="columns.value"></tr>
-      <tr mat-row *matRowDef="let row; columns: columns.value"></tr>
+      <tr mat-header-row *matHeaderRowDef="defaultColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: defaultColumns"></tr>
     </table>
 
     <mat-paginator
+      *ngIf="showPaginator"
       #paginator
       [pageSizeOptions]="[10, 20, 50, 100, 150, 200]"
       showFirstLastButtons

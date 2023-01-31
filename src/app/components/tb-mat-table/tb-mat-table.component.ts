@@ -1,9 +1,17 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CellType } from '../../constants';
+import { Filter } from '../filter-sidebar/filter';
 
 @Component({
   selector: 'tb-mat-table',
@@ -14,14 +22,17 @@ export class TbMatTableComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
+  @Input() showColumnSelector: boolean;
+  @Input() showPaginator: boolean;
   @Input() gridModel: any;
   @Input() dataService: any;
   @Input() filterOptions: any;
-  @Input() filters = [];
+  @Input() filters: Filter[] = [];
+  @Input() activeSort: Sort;
+  @Input() dataSource = new MatTableDataSource<any>([]);
+  @Output() selectionChange = new EventEmitter();
 
-  activeSort: Sort;
   totalCount = 0;
-  dataSource: MatTableDataSource<any>;
   defaultColumns = [];
   cellType = CellType;
 
@@ -29,13 +40,16 @@ export class TbMatTableComponent implements OnInit {
     this.defaultColumns = this.gridModel
       .filter((g) => g.default)
       .map((g) => g.rowParameter);
-    this.getGridItems();
+
+    if (this.dataService) {
+      this.getGridItems();
+    }
   }
 
   getGridItems(event?: PageEvent, sortEvent?: Sort) {
     this.activeSort = sortEvent;
-    console.log(event);
-    console.log(sortEvent);
+    //console.log(event);
+    //console.log(sortEvent);
     this.dataService
       .getAllPartialValue(event?.pageIndex, event?.pageSize)
       .then((res) => {
@@ -95,9 +109,7 @@ export class TbMatTableComponent implements OnInit {
       this.selection.clear();
       return;
     }
-
     this.selection.select(...this.dataSource.data);
-    console.log(this.selection.selected);
   }
 
   checkboxLabel(row?): string {

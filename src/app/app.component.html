@@ -1,6 +1,25 @@
-<tb-mat-table
-  [dataService]="service"
-  [gridModel]="gridModel"
-  [filterOptions]="filterOptions"
->
-</tb-mat-table>
+<div class="row">
+  <div class="col-3">
+    <app-filter-sidebar></app-filter-sidebar>
+  </div>
+  <div class="col-6">
+    <tb-mat-table
+      [showColumnSelector]="true"
+      [showPaginator]="true"
+      [dataService]="service"
+      [gridModel]="gridModel"
+      [filterOptions]="filterOptions"
+    >
+    </tb-mat-table>
+  </div>
+  <div class="col-3">
+    <tb-mat-table
+      [showColumnSelector]="false"
+      [showPaginator]="false"
+      [dataService]="service"
+      [gridModel]="gridModel"
+      [filterOptions]="filterOptions"
+    >
+    </tb-mat-table>
+  </div>
+</div>
