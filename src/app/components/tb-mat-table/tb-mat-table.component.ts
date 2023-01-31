@@ -26,8 +26,6 @@ export class TbMatTableComponent implements OnInit {
   @Input() showPaginator: boolean;
   @Input() gridModel: any;
   @Input() dataService: any;
-  @Input() filterOptions: any;
-  @Input() filters: Filter[] = [];
   @Input() activeSort: Sort;
   @Input() dataSource = new MatTableDataSource<any>([]);
   @Output() selectionChange = new EventEmitter();
@@ -35,6 +33,7 @@ export class TbMatTableComponent implements OnInit {
   totalCount = 0;
   defaultColumns = [];
   cellType = CellType;
+  selection = new SelectionModel<any>(true, []);
 
   ngOnInit() {
     this.defaultColumns = this.gridModel
@@ -44,6 +43,10 @@ export class TbMatTableComponent implements OnInit {
     if (this.dataService) {
       this.getGridItems();
     }
+
+    this.selection.changed.subscribe((event) => {
+      this.selectionChange.emit(event);
+    });
   }
 
   getGridItems(event?: PageEvent, sortEvent?: Sort) {
@@ -95,8 +98,6 @@ export class TbMatTableComponent implements OnInit {
     element = element.filter((e) => e[filterKey] == listFilter[filterKey])[0];
     return element[listRowParameter];
   }
-
-  selection = new SelectionModel<any>(true, []);
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;

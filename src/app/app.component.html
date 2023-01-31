@@ -8,7 +8,6 @@
       [showPaginator]="true"
       [dataService]="service"
       [gridModel]="gridModel"
-      [filterOptions]="filterOptions"
     >
     </tb-mat-table>
   </div>
@@ -16,9 +15,8 @@
     <tb-mat-table
       [showColumnSelector]="false"
       [showPaginator]="false"
-      [dataService]="service"
-      [gridModel]="gridModel"
-      [filterOptions]="filterOptions"
+      [dataSource]=""
+      [gridModel]="selectionGridModel"
     >
     </tb-mat-table>
   </div>

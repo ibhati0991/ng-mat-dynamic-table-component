@@ -95,5 +95,23 @@ export class AppComponent {
     // { title: 'Date', rowParameter: 'date_recorded', cellType: CellType.date },
   ];
 
+  selectionGridModel = [
+    {
+      title: 'Select',
+      rowParameter: 'select',
+      cellType: CellType.select,
+      default: true,
+      sortable: false,
+    },
+    {
+      title: 'Name',
+      rowParameter: 'first_name',
+      concatRowParameter: ['last_name'],
+      cellType: CellType.concat,
+      default: true,
+      sortable: true,
+    },
+  ];
+
   constructor(public service: BaseService) {}
 }
