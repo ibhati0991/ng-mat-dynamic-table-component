@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { TbMatTableComponent } from './components/tb-mat-table/tb-mat-table.component';
 import { CellType } from './constants';
 import { BaseService } from './services/base.service';
 
@@ -112,11 +113,14 @@ export class AppComponent {
       sortable: true,
     },
   ];
-
+  @ViewChild('selection') selectionTable: TbMatTableComponent;
   selectedItems = [];
   constructor(public service: BaseService) {}
 
   selectItems(event) {
     this.selectedItems = event;
+    event.forEach((e) => {
+      this.selectionTable.selection.select(e);
+    });
   }
 }
