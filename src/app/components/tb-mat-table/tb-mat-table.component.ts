@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
@@ -18,7 +19,7 @@ import { Filter } from '../filter-sidebar/filter';
   templateUrl: './tb-mat-table.component.html',
   styleUrls: ['./tb-mat-table.component.css'],
 })
-export class TbMatTableComponent implements OnInit {
+export class TbMatTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
@@ -47,6 +48,10 @@ export class TbMatTableComponent implements OnInit {
     this.selection.changed.subscribe((event) => {
       this.selectionChange.emit(event);
     });
+  }
+
+  ngOnDestroy() {
+    this.selection.changed.unsubscribe();
   }
 
   getGridItems(event?: PageEvent, sortEvent?: Sort) {
