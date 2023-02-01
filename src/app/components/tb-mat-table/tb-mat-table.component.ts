@@ -26,11 +26,15 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() showColumnSelector: boolean;
   @Input() showPaginator: boolean;
+
   @Input() gridModel: any;
-  @Input() dataService: any;
-  @Input() activeSort: Sort;
+
   @Input() dataSource: any;
-  @Input() selection: SelectionModel<any> = new SelectionModel<any>(true, []);
+  @Input() dataService: any;
+
+  @Input() activeSort: Sort;
+
+  @Input() selection: SelectionModel<any>;
   @Output() selectionChange = new EventEmitter();
 
   totalCount = 0;
