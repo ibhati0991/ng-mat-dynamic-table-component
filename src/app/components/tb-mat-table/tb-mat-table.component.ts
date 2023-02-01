@@ -1,12 +1,10 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   Component,
-  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
-  Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
