@@ -1,10 +1,12 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
+  Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -28,7 +30,8 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() dataService: any;
   @Input() activeSort: Sort;
   @Input() dataSource: any;
-  @Input() selection: SelectionModel<any>;
+  @Input() selection: SelectionModel<any> = new SelectionModel<any>(true, []);
+  @Output() selectionChange = new EventEmitter();
 
   totalCount = 0;
   defaultColumns = [];
@@ -51,6 +54,10 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
       this.dataSource = new MatTableDataSource<any>(this.dataSource);
       this.dataSource.sort = this.sort;
     }
+
+    this.selection.changed.subscribe(() => {
+      this.selectionChange.emit(this.selection);
+    });
   }
 
   ngOnDestroy() {

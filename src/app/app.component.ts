@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { TbMatTableComponent } from './components/tb-mat-table/tb-mat-table.component';
+import { SelectionModel } from '@angular/cdk/collections';
+import { Component } from '@angular/core';
 import { CellType } from './constants';
 import { BaseService } from './services/base.service';
 
@@ -114,23 +114,6 @@ export class AppComponent {
     },
   ];
 
-  @ViewChild('selection') selectionTable: TbMatTableComponent;
-  @ViewChild('main') mainTable: TbMatTableComponent;
-  selectedItems = [];
+  selection = new SelectionModel<any>(true, []);
   constructor(public service: BaseService) {}
-
-  selectMainItems(event) {
-    this.selectedItems.push(...event.added);
-    this.selectedItems.forEach((e) => {
-      console.log(e);
-      this.selectionTable.selection.select(e);
-    });
-  }
-
-  selectionItems(event) {
-    console.log(event);
-    event.removed.forEach((e) => {
-      this.mainTable.selection.deselect(e);
-    });
-  }
 }

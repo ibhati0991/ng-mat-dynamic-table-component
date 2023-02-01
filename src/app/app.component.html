@@ -4,21 +4,21 @@
   </div>
   <div class="col-6">
     <tb-mat-table
-      #main
       [showColumnSelector]="true"
       [showPaginator]="true"
       [dataService]="service"
       [gridModel]="gridModel"
+      [(selection)]="selection"
     >
     </tb-mat-table>
   </div>
   <div class="col-3">
     <tb-mat-table
-      #selection
       [showColumnSelector]="false"
       [showPaginator]="false"
-      [dataSource]="selectedItems"
+      [dataSource]="selection.selected"
       [gridModel]="selectionGridModel"
+      [(selection)]="selection"
     >
     </tb-mat-table>
   </div>
