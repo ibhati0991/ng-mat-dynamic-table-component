@@ -9,7 +9,6 @@
       [showPaginator]="true"
       [dataService]="service"
       [gridModel]="gridModel"
-      (selectionChange)="selectMainItems($event)"
     >
     </tb-mat-table>
   </div>
@@ -20,7 +19,6 @@
       [showPaginator]="false"
       [dataSource]="selectedItems"
       [gridModel]="selectionGridModel"
-      (selectionChange)="selectionItems($event)"
     >
     </tb-mat-table>
   </div>

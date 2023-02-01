@@ -30,12 +30,11 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() dataService: any;
   @Input() activeSort: Sort;
   @Input() dataSource: any;
-  @Output() selectionChange = new EventEmitter();
+  @Input() selection: SelectionModel<any>;
 
   totalCount = 0;
   defaultColumns = [];
   cellType = CellType;
-  selection = new SelectionModel<any>(true, []);
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<any>([]);
@@ -46,10 +45,6 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
     if (this.dataService) {
       this.getGridItems();
     }
-
-    this.selection.changed.subscribe((event) => {
-      this.selectionChange.emit(event);
-    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
