@@ -68,7 +68,10 @@ export class TbMatTableComponent
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
-    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+    this.sort.sortChange.subscribe(() => {
+      this.paginator.pageIndex = 0;
+      this.fetchMoreRecords.emit(this.paginator.page);
+    });
   }
 
   ngOnDestroy() {
