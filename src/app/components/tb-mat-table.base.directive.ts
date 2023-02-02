@@ -8,10 +8,13 @@ export class TbMatTableBaseDirective {
   activeSort: Sort;
   pagination: PageEvent;
   totalCount: number;
-  
-  constructor(protected dataService: BaseService) {}
+
+  constructor(protected dataService: BaseService) {
+    this.getGridItems();
+  }
 
   getGridItems(event?: PageEvent, sortEvent?: Sort) {
+    console.log(event);
     this.activeSort = sortEvent;
     this.pagination = event;
     this.dataService
@@ -19,7 +22,7 @@ export class TbMatTableBaseDirective {
       .then((res) => {
         console.log(res);
         this.dataSource = new MatTableDataSource<any>(res['data']);
-        this.totalCount = res['data']['count'];
+        this.totalCount = res['total'];
       });
   }
 }

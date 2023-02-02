@@ -2,17 +2,19 @@
   <div class="col-3">
     <app-filter-sidebar></app-filter-sidebar>
   </div>
-  <div class="col-6">
+  <div class="col-9">
     <tb-mat-table
       [showColumnSelector]="true"
       [showPaginator]="true"
-      [dataService]="service"
+      [dataSource]="dataSource"
+      [totalCount]="totalCount"
       [gridModel]="gridModel"
       [(selection)]="selection"
+      (fetchMoreRecords)="getGridItems($event)"
     >
     </tb-mat-table>
   </div>
-  <div class="col-3">
+  <!-- <div class="col-3">
     <tb-mat-table
       [showColumnSelector]="false"
       [showPaginator]="false"
@@ -21,5 +23,5 @@
       [(selection)]="selection"
     >
     </tb-mat-table>
-  </div>
+  </div> -->
 </div>

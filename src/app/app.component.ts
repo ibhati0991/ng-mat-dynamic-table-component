@@ -1,5 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component } from '@angular/core';
+import { TbMatTableBaseDirective } from './components/tb-mat-table.base.directive';
 import { CellType } from './constants';
 import { BaseService } from './services/base.service';
 
@@ -8,7 +9,7 @@ import { BaseService } from './services/base.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent extends TbMatTableBaseDirective {
   dataSource: any = [];
   filterOptions = {
     persons: {
@@ -115,5 +116,7 @@ export class AppComponent {
   ];
 
   selection = new SelectionModel<any>(true, []);
-  constructor(public service: BaseService) {}
+  constructor(public service: BaseService) {
+    super(service);
+  }
 }
