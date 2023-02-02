@@ -137,13 +137,12 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
     this.selection.select(...this.dataSource.data);
   }
 
+  //custom is checked method
   isChecked(row: any): boolean {
-    const found = this.selection.selected.find(el => el.[this.primaryKey] === row.[this.primaryKey]);
-    if (found) {
-      return true;
-    }
-    return false;
- }
+    return this.selection.selected.find(
+      (el) => el[this.primaryKey] === row[this.primaryKey]
+    );
+  }
 
   checkboxLabel(row?): string {
     if (!row) {
