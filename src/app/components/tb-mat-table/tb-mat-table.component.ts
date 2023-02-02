@@ -10,9 +10,9 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CellType } from '../../constants';
 
 @Component({
@@ -23,6 +23,7 @@ import { CellType } from '../../constants';
 export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatTable, { static: false }) table: MatTable<any>;
 
   @Input() showColumnSelector: boolean;
   @Input() showPaginator: boolean;
@@ -30,9 +31,8 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() primaryKey: any = 'id';
 
   @Input() gridModel: any;
-  // either data source or data service need to be passed
+
   @Input() dataSource: any;
-  @Input() dataService: any;
 
   @Input() activeSort: Sort;
   @Output() activeSortChange = new EventEmitter();
@@ -40,25 +40,21 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() selection: SelectionModel<any>;
   @Output() selectionChange = new EventEmitter();
 
-  totalCount = 0;
   defaultColumns = [];
   cellType = CellType;
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<any>([]);
+    this.dataSource.sort = this.sort;
+
     this.defaultColumns = this.gridModel
       .filter((g) => g.default)
       .map((g) => g.rowParameter);
-
-    if (this.dataService) {
-      this.getGridItems();
-    }
 
     this.selection.isSelected = this.isChecked.bind(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // console.log(changes);
     if (changes.dataSource) {
       this.dataSource = new MatTableDataSource<any>(this.dataSource);
       this.dataSource.sort = this.sort;
@@ -71,20 +67,6 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnDestroy() {
     this.selection.changed.unsubscribe();
-  }
-
-  getGridItems(event?: PageEvent, sortEvent?: Sort) {
-    this.activeSort = sortEvent;
-    //console.log(event);
-    //console.log(sortEvent);
-    this.dataService
-      .getAllPartialValue(event?.pageIndex, event?.pageSize)
-      .then((res) => {
-        //console.log(res);
-        this.dataSource = new MatTableDataSource<any>(res['data']);
-        this.dataSource.sort = this.sort;
-        this.totalCount = res['total'];
-      });
   }
 
   get rowParameter() {
