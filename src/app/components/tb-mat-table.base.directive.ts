@@ -14,7 +14,6 @@ export class TbMatTableBaseDirective {
   }
 
   getGridItems(pageEvent?: PageEvent, sortEvent?: Sort) {
-    console.log(event);
     this.activeSort = sortEvent;
     this.pagination = pageEvent;
     this.dataService
@@ -22,7 +21,6 @@ export class TbMatTableBaseDirective {
       .then((res) => {
         this.dataSource = new MatTableDataSource<any>(res['data']);
         this.totalCount = res['total'];
-        console.log(this.dataSource.data);
       });
   }
 }

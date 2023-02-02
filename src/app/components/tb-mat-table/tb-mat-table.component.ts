@@ -76,7 +76,6 @@ export class TbMatTableComponent
 
   ngOnDestroy() {
     this.selection.changed.unsubscribe();
-    this.sort.sortChange.unsubscribe();
   }
 
   get rowParameter() {
