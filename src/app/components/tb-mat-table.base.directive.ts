@@ -13,16 +13,16 @@ export class TbMatTableBaseDirective {
     this.getGridItems();
   }
 
-  getGridItems(event?: PageEvent, sortEvent?: Sort) {
+  getGridItems(pageEvent?: PageEvent, sortEvent?: Sort) {
     console.log(event);
     this.activeSort = sortEvent;
-    this.pagination = event;
+    this.pagination = pageEvent;
     this.dataService
-      .getAllPartialValue(event?.pageIndex, event?.pageSize)
+      .getAllPartialValue(pageEvent?.pageIndex, pageEvent?.pageSize)
       .then((res) => {
-        console.log(res);
         this.dataSource = new MatTableDataSource<any>(res['data']);
         this.totalCount = res['total'];
+        console.log(this.dataSource.data);
       });
   }
 }
