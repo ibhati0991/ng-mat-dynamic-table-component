@@ -52,6 +52,11 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
       .map((g) => g.rowParameter);
 
     this.selection.isSelected = this.isChecked.bind(this);
+
+    this.selection.changed.subscribe(() => {
+      this.selectionChange.emit(this.selection);
+    });
+    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -59,14 +64,11 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
       this.dataSource = new MatTableDataSource<any>(this.dataSource);
       this.dataSource.sort = this.sort;
     }
-
-    this.selection.changed.subscribe(() => {
-      this.selectionChange.emit(this.selection);
-    });
   }
 
   ngOnDestroy() {
     this.selection.changed.unsubscribe();
+    this.sort.sortChange.unsubscribe();
   }
 
   get rowParameter() {

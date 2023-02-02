@@ -8,6 +8,7 @@ export class TbMatTableBaseDirective {
   activeSort: Sort;
   pagination: PageEvent;
   totalCount: number;
+  
   constructor(protected dataService: BaseService) {}
 
   getGridItems(event?: PageEvent, sortEvent?: Sort) {
@@ -16,6 +17,7 @@ export class TbMatTableBaseDirective {
     this.dataService
       .getAllPartialValue(event?.pageIndex, event?.pageSize)
       .then((res) => {
+        console.log(res);
         this.dataSource = new MatTableDataSource<any>(res['data']);
         this.totalCount = res['data']['count'];
       });
