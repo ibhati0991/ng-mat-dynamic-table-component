@@ -27,6 +27,8 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() showColumnSelector: boolean;
   @Input() showPaginator: boolean;
 
+  @Input() primaryKey: any = 'id';
+
   @Input() gridModel: any;
   // either data source or data service need to be passed
   @Input() dataSource: any;
@@ -51,6 +53,8 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
     if (this.dataService) {
       this.getGridItems();
     }
+
+    this.selection.isSelected = this.isChecked.bind(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -132,6 +136,14 @@ export class TbMatTableComponent implements OnInit, OnDestroy, OnChanges {
     }
     this.selection.select(...this.dataSource.data);
   }
+
+  isChecked(row: any): boolean {
+    const found = this.selection.selected.find(el => el.[this.primaryKey] === row.[this.primaryKey]);
+    if (found) {
+      return true;
+    }
+    return false;
+ }
 
   checkboxLabel(row?): string {
     if (!row) {
