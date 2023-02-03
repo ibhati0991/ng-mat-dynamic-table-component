@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,7 +9,7 @@ export class TbMatTableBaseDirective {
   activeSort: Sort;
   pagination: PageEvent;
   totalCount: number;
-
+  selection = new SelectionModel<any>(true, []);
   constructor(protected dataService: BaseService) {
     this.getGridItems();
   }

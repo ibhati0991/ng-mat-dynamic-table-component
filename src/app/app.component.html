@@ -2,7 +2,7 @@
   <div class="col-3">
     <app-filter-sidebar></app-filter-sidebar>
   </div>
-  <div class="col-9">
+  <div class="col-6">
     <tb-mat-table
       [showColumnSelector]="true"
       [showPaginator]="true"
@@ -14,14 +14,14 @@
     >
     </tb-mat-table>
   </div>
-  <!-- <div class="col-3">
+  <div class="col-3">
     <tb-mat-table
       [showColumnSelector]="false"
       [showPaginator]="false"
-      [dataSource]="selection.selected"
+      [dataSource]="selectedItems"
       [gridModel]="selectionGridModel"
       [(selection)]="selection"
     >
     </tb-mat-table>
-  </div> -->
+  </div>
 </div>

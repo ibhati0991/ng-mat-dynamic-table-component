@@ -1,5 +1,5 @@
-import { SelectionModel } from '@angular/cdk/collections';
 import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { TbMatTableBaseDirective } from './components/tb-mat-table.base.directive';
 import { CellType } from './constants';
 import { BaseService } from './services/base.service';
@@ -115,8 +115,11 @@ export class AppComponent extends TbMatTableBaseDirective {
     },
   ];
 
-  selection = new SelectionModel<any>(true, []);
   constructor(public service: BaseService) {
     super(service);
+  }
+
+  get selectedItems() {
+    return new MatTableDataSource<any>(this.selection.selected);
   }
 }

@@ -61,10 +61,7 @@ export class TbMatTableComponent
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.totalCount) {
-    }
-  }
+  ngOnChanges(changes: SimpleChanges) {}
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
