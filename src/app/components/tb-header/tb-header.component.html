@@ -1,0 +1,33 @@
+<div class="row pt-4">
+  <div class="col-12">
+    <p>{{ subHeader }}</p>
+  </div>
+</div>
+<div class="row pb-4">
+  <div class="col-3">
+    <h3>{{ header }}</h3>
+  </div>
+  <div class="col-6"></div>
+  <div class="col-3">
+    <button
+      aria-label="export"
+      mat-raised-button
+      color="basic"
+      class="px-4 mr-3 btn-grey"
+      *ngIf="canExport"
+      (click)="export.emit(true)"
+    >
+      <mat-icon>open_in_new</mat-icon>
+      Export
+    </button>
+    <button
+      aria-label="add course"
+      mat-raised-button
+      color="primary"
+      *ngIf="canAdd"
+    >
+      <mat-icon>add</mat-icon>
+      Add {{ subHeader }}
+    </button>
+  </div>
+</div>

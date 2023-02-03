@@ -19,6 +19,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { TbHeaderComponent } from './components/tb-header/tb-header.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -37,8 +39,14 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonToggleModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
   ],
-  declarations: [AppComponent, TbMatTableComponent, FilterSidebarComponent],
+  declarations: [
+    AppComponent,
+    TbHeaderComponent,
+    TbMatTableComponent,
+    FilterSidebarComponent,
+  ],
   bootstrap: [AppComponent],
   providers: [BaseService, LocalStorageService],
 })
