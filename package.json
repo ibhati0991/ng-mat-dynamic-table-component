@@ -11,6 +11,7 @@
     "e2e": "ng e2e"
   },
   "dependencies": {
+    "@angular-slider/ngx-slider": "^2.0.4",
     "@angular/animations": "^15.0.2",
     "@angular/cdk": "15.1.2",
     "@angular/common": "^15.0.2",
