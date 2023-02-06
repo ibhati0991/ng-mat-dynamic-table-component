@@ -21,6 +21,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { TbHeaderComponent } from './components/tb-header/tb-header.component';
 import { MatIconModule } from '@angular/material/icon';
+import { TbDateSliderComponent } from './components/tb-date-slider/tb-date-slider.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -40,12 +44,16 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    NgxSliderModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   declarations: [
     AppComponent,
     TbHeaderComponent,
     TbMatTableComponent,
     FilterSidebarComponent,
+    TbDateSliderComponent,
   ],
   bootstrap: [AppComponent],
   providers: [BaseService, LocalStorageService],
