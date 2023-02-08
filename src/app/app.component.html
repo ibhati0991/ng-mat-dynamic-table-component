@@ -24,6 +24,7 @@
       [totalCount]="totalCount"
       [gridModel]="gridModel"
       [(selection)]="selection"
+      (activeSortChange)="activeSortChange($event)"
       (fetchMoreRecords)="getGridItems($event)"
       (openDetailPage)="openDetailPage($event)"
     >

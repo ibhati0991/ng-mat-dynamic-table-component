@@ -69,9 +69,10 @@ export class TbMatTableComponent
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
-    this.sort.sortChange.subscribe(() => {
+    this.sort.sortChange.subscribe((event) => {
       this.paginator.pageIndex = 0;
       this.fetchMoreRecords.emit(this.paginator.page);
+      this.activeSortChange.emit(event);
     });
   }
 
@@ -85,7 +86,7 @@ export class TbMatTableComponent
 
   getElementFromPath(element, rowParameter) {
     rowParameter.split('.').forEach((r) => {
-      element = element[r];
+      element = element[r] || '';
     });
     return element;
   }
@@ -93,7 +94,7 @@ export class TbMatTableComponent
   getConcatinatedElementFromPath(element, g) {
     let rowItem = element;
     g.rowParameter.split('.').forEach((r) => {
-      rowItem = rowItem[r];
+      rowItem = rowItem[r] || '';
     });
     let concatData;
     g.concatRowParameter.forEach((cr) => {
@@ -108,7 +109,7 @@ export class TbMatTableComponent
 
   getElementFromList(element, rowParameter, listFilter, listRowParameter) {
     rowParameter.split('.').forEach((r) => {
-      element = element[r];
+      element = element[r] || '';
     });
     const filterKey = Object.keys(listFilter)[0];
     element = element.filter((e) => e[filterKey] == listFilter[filterKey])[0];

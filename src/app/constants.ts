@@ -7,3 +7,9 @@ export const CellType = {
   concat: 'concat',
   image: 'image',
 };
+
+export const DetailPagePath = {
+  person: '/admin/person/',
+  course: '/admin/course/',
+  course_schedule: '/admin/course-schedule/',
+};

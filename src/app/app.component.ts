@@ -125,12 +125,4 @@ export class AppComponent extends TbMatTableBaseDirective {
   constructor(public service: BaseService) {
     super(service);
   }
-
-  get selectedItems() {
-    return new MatTableDataSource<any>(this.selection.selected);
-  }
-
-  openDetailPage(event) {
-    console.log(event);
-  }
 }

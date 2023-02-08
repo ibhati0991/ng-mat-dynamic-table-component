@@ -11,6 +11,8 @@ export class TbMatTableBaseDirective {
   totalCount: number;
   selection = new SelectionModel<any>(true, []);
   loading = false;
+  detailPagePath = '';
+
   constructor(protected dataService: BaseService) {
     this.getGridItems();
   }
@@ -27,5 +29,17 @@ export class TbMatTableBaseDirective {
         this.totalCount = res['total'];
       })
       .catch(() => (this.loading = false));
+  }
+
+  activeSortChange(event) {
+    console.log(event);
+  }
+
+  get selectedItems() {
+    return new MatTableDataSource<any>(this.selection.selected);
+  }
+
+  openDetailPage(event) {
+    console.log(event);
   }
 }
