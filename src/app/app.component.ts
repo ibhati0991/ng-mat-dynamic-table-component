@@ -63,6 +63,13 @@ export class AppComponent extends TbMatTableBaseDirective {
       default: false,
       sortable: true,
     },
+    {
+      title: '',
+      rowParameter: 'detail',
+      cellType: CellType.detail,
+      default: true,
+      sortable: false,
+    },
     // {
     //   title: 'Category',
     //   rowParameter: 'assessment_category',
@@ -121,5 +128,9 @@ export class AppComponent extends TbMatTableBaseDirective {
 
   get selectedItems() {
     return new MatTableDataSource<any>(this.selection.selected);
+  }
+
+  openDetailPage(event) {
+    console.log(event);
   }
 }

@@ -14,6 +14,12 @@
           </mat-select>
         </mat-form-field>
       </div>
+      <div class="col-12">
+        <mat-progress-bar
+          mode="indeterminate"
+          *ngIf="loading"
+        ></mat-progress-bar>
+      </div>
       <div class="col-12 px-2">
         <table mat-table [dataSource]="dataSource" matSort>
           <ng-container
@@ -48,7 +54,8 @@
                     list: list,
                     text: text,
                     concat: concat,
-                    image: image
+                    image: image,
+                    detail: detail
                   }[g.cellType]
                 "
               >
@@ -94,6 +101,11 @@
                   [src]="getElementFromPath(element, g.rowParameter)"
                   alt="image"
                 />
+              </ng-template>
+              <ng-template #detail>
+                <button mat-icon-button (click)="openDetailPage.emit(element)">
+                  <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
               </ng-template>
             </td>
           </ng-container>

@@ -10,18 +10,22 @@ export class TbMatTableBaseDirective {
   pagination: PageEvent;
   totalCount: number;
   selection = new SelectionModel<any>(true, []);
+  loading = false;
   constructor(protected dataService: BaseService) {
     this.getGridItems();
   }
 
   getGridItems(pageEvent?: PageEvent, sortEvent?: Sort) {
+    this.loading = true;
     this.activeSort = sortEvent;
     this.pagination = pageEvent;
     this.dataService
       .getAllPartialValue(pageEvent?.pageIndex, pageEvent?.pageSize)
       .then((res) => {
+        this.loading = false;
         this.dataSource = new MatTableDataSource<any>(res['data']);
         this.totalCount = res['total'];
-      });
+      })
+      .catch(() => (this.loading = false));
   }
 }

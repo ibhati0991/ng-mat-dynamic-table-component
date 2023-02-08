@@ -7,23 +7,25 @@
       [canAdd]="true"
     ></tb-header>
   </div>
-  <div class="col-12">
+  <!-- <div class="col-12">
     <tb-date-slider></tb-date-slider>
-  </div>
+  </div> -->
 </div>
 <div class="row">
-  <div class="col-3">
+  <!-- <div class="col-3">
     <app-filter-sidebar></app-filter-sidebar>
-  </div>
-  <div class="col-6">
+  </div> -->
+  <div class="col-9">
     <tb-mat-table
       [showColumnSelector]="true"
       [showPaginator]="true"
+      [loading]="loading"
       [dataSource]="dataSource"
       [totalCount]="totalCount"
       [gridModel]="gridModel"
       [(selection)]="selection"
       (fetchMoreRecords)="getGridItems($event)"
+      (openDetailPage)="openDetailPage($event)"
     >
     </tb-mat-table>
   </div>

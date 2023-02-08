@@ -30,6 +30,7 @@ export class TbMatTableComponent
 
   @Input() showColumnSelector: boolean;
   @Input() showPaginator: boolean;
+  @Input() loading: boolean;
 
   @Input() primaryKey: any = 'id';
 
@@ -45,6 +46,7 @@ export class TbMatTableComponent
   @Output() selectionChange = new EventEmitter();
 
   @Output() fetchMoreRecords = new EventEmitter();
+  @Output() openDetailPage = new EventEmitter();
 
   defaultColumns = [];
   cellType = CellType;

@@ -25,6 +25,7 @@ import { TbDateSliderComponent } from './components/tb-date-slider/tb-date-slide
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     NgxSliderModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressBarModule,
   ],
   declarations: [
     AppComponent,
