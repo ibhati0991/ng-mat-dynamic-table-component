@@ -8,6 +8,12 @@
         >
           <mat-label>Select Columns</mat-label>
           <mat-select [(ngModel)]="defaultColumns" multiple>
+            <mat-select-trigger class="d-flex align-items-center">
+              <mat-icon>view_column</mat-icon>
+              &nbsp;Columns&nbsp;({{ defaultColumns.length }}/{{
+                gridModel.length
+              }})
+            </mat-select-trigger>
             <mat-option *ngFor="let g of gridModel" [value]="g.rowParameter">
               {{ g.title }}
             </mat-option>
@@ -21,7 +27,7 @@
         ></mat-progress-bar>
       </div>
       <div class="col-12 px-2">
-        <table mat-table [dataSource]="dataSource" matSort>
+        <table mat-table [dataSource]="dataSource" matSort class="w-100">
           <ng-container
             [matColumnDef]="g.rowParameter"
             *ngFor="let g of gridModel"
@@ -103,7 +109,11 @@
                 />
               </ng-template>
               <ng-template #detail>
-                <button mat-icon-button (click)="openDetailPage.emit(element)">
+                <button
+                  mat-icon-button
+                  color="primary"
+                  (click)="openDetailPage.emit(element)"
+                >
                   <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
               </ng-template>

@@ -71,8 +71,8 @@ export class TbMatTableComponent
     this.dataSource.sort = this.sort;
     this.sort.sortChange.subscribe((event) => {
       this.paginator.pageIndex = 0;
-      this.fetchMoreRecords.emit(this.paginator.page);
       this.activeSortChange.emit(event);
+      this.fetchMoreRecords.emit(this.paginator);
     });
   }
 
@@ -111,9 +111,10 @@ export class TbMatTableComponent
     rowParameter.split('.').forEach((r) => {
       element = element[r] || '';
     });
-    const filterKey = Object.keys(listFilter)[0];
-    element = element.filter((e) => e[filterKey] == listFilter[filterKey])[0];
-    return element[listRowParameter];
+    const filterKey = Object.keys(listFilter)?.[0];
+    element =
+      element.filter((e) => e[filterKey] == listFilter[filterKey])?.[0] || '';
+    return element[listRowParameter] || '';
   }
 
   isAllSelected() {
