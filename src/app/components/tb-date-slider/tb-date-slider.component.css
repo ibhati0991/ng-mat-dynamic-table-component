@@ -6,8 +6,8 @@
 }
 .range-selected {
   height: 100%;
-  left: 30%;
-  right: 30%;
+  /* left: 10%;
+  right: 30%; */
   position: absolute;
   border-radius: 5px;
   background-color: #1b53c0;
@@ -20,7 +20,7 @@
   position: absolute;
   width: 100%;
   height: 5px;
-  top: -7px;
+  top: -5px;
   background: none;
   pointer-events: none;
   -webkit-appearance: none;

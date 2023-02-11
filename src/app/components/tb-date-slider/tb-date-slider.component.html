@@ -2,7 +2,11 @@
   <div class="col-12 p-5">
     <div class="range">
       <div class="range-slider">
-        <span class="range-selected"></span>
+        <span
+          [style.left]="left"
+          [style.right]="right"
+          class="range-selected"
+        ></span>
       </div>
       <div class="range-input">
         <input
@@ -10,18 +14,26 @@
           class="min"
           [attr.min]="min"
           [attr.max]="max"
-          [(ngModel)]="value"
           [attr.step]="step"
+          [(ngModel)]="value"
+          (ngModelChange)="upateRange($event, 'value')"
         />
         <input
           type="range"
           class="max"
           [attr.min]="min"
           [attr.max]="max"
-          [(ngModel)]="highValue"
           [attr.step]="step"
+          [(ngModel)]="highValue"
+          (ngModelChange)="upateRange($event, 'highValue')"
         />
       </div>
     </div>
+  </div>
+  <div class="col-3">
+    {{ value }}
+  </div>
+  <div class="col-3">
+    {{ highValue }}
   </div>
 </div>
