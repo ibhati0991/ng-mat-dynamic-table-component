@@ -6,37 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tb-date-slider.component.css'],
 })
 export class TbDateSliderComponent implements OnInit {
-  value = this.sliderOptions.floor;
-  highValue = this.sliderOptions.ceil;
+  min: number = 0;
+  max: number = 100;
+  step: number = 5;
 
-  get sliderOptions() {
-    return {
-      floor: new Date(2019, 0, 1).getTime() / 1000,
-      ceil: new Date().getTime() / 1000,
-      step: 86400,
-      hideLimitLabels: true,
-      hidePointerLabels: false,
-      translate: (value: number): string => {
-        return new Date(value * 1000).toDateString().toString().substring(3);
-      },
-    };
-  }
+  value: number = 10;
+  highValue: number = 80;
 
-  dateFilter(event) {
-    console.log(event);
-  }
-
-  updateRange(event, type) {
-    if (type === 'ceil') {
-      console.log(event);
-    } else {
-      console.log(event);
-    }
-  }
-
-  constructor() {
-    console.log(this.value, this.highValue);
-  }
+  constructor() {}
 
   ngOnInit() {}
 }

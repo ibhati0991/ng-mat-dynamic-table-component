@@ -22,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { TbHeaderComponent } from './components/tb-header/tb-header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TbDateSliderComponent } from './components/tb-date-slider/tb-date-slider.component';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
+
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -45,7 +45,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    NgxSliderModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressBarModule,

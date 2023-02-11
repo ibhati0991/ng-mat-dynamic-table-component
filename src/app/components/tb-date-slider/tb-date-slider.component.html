@@ -1,32 +1,27 @@
-<ngx-slider
-  class="w-100"
-  [(value)]="value"
-  [(highValue)]="highValue"
-  [options]="sliderOptions"
-  (valueChange)="dateFilter($event)"
->
-</ngx-slider>
-<div class="w-100 d-flex justify-content-between">
-  <mat-form-field class="w-25" appearance="outline">
-    <!-- <mat-label>Start date</mat-label> -->
-    <input
-      aria-label="inputField"
-      matInput
-      [matDatepicker]="picker1"
-      (dateChange)="updateRange($event, 'floor')"
-    />
-    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-    <mat-datepicker #picker1></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field class="w-25" appearance="outline">
-    <!-- <mat-label>End date</mat-label> -->
-    <input
-      aria-label="inputField"
-      matInput
-      [matDatepicker]="picker"
-      (dateChange)="updateRange($event, 'ceil')"
-    />
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+<div class="row">
+  <div class="col-12 p-5">
+    <div class="range">
+      <div class="range-slider">
+        <span class="range-selected"></span>
+      </div>
+      <div class="range-input">
+        <input
+          type="range"
+          class="min"
+          [attr.min]="min"
+          [attr.max]="max"
+          [(ngModel)]="value"
+          [attr.step]="step"
+        />
+        <input
+          type="range"
+          class="max"
+          [attr.min]="min"
+          [attr.max]="max"
+          [(ngModel)]="highValue"
+          [attr.step]="step"
+        />
+      </div>
+    </div>
+  </div>
 </div>

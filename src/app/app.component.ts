@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { TbMatTableBaseDirective } from './components/tb-mat-table.base.directive';
 import { CellType } from './constants';
 import { BaseService } from './services/base.service';
