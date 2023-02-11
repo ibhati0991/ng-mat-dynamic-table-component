@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'tb-date-slider',
@@ -6,14 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tb-date-slider.component.css'],
 })
 export class TbDateSliderComponent implements OnInit {
-  min: number = 0;
-  max: number = 100;
-  step: number = 1;
-  value: number = 10;
-  highValue: number = 80;
+  @Input() min: number = 0;
+  @Input()max: number = 100;
+  @Input()step: number = 1;
 
-  left: any ;
-  right: any ;
+  @Input()value: number = 10;
+  @Output()valueChange = new EventEmitter();
+
+  @Input()highValue: number = 80;
+  @Output()highValueChange = new EventEmitter();
+
+  protected left: any ;
+  protected right: any ;
 
   constructor() {}
 
@@ -24,7 +28,9 @@ export class TbDateSliderComponent implements OnInit {
   upateRange(event, type) {
     this.updateRangeBar();
     if (type === 'value') {
+      this.valueChange.emit(event)
     } else {
+      this.highValueChange.emit(event)
     }
   }
 
