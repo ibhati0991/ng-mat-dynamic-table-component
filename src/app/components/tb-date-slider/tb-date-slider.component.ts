@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, Subscription } from 'rxjs';
 
@@ -7,7 +7,7 @@ import { debounceTime, Subscription } from 'rxjs';
   templateUrl: './tb-date-slider.component.html',
   styleUrls: ['./tb-date-slider.component.css'],
 })
-export class TbDateSliderComponent implements OnInit {
+export class TbDateSliderComponent implements OnInit ,OnChanges,OnDestroy {
   @Input()min: number = 0;
   @Input()max: number = 100;
   @Input()step: number = 1;
@@ -19,13 +19,19 @@ export class TbDateSliderComponent implements OnInit {
 
   constructor() {}
 
-  form: FormGroup = new FormGroup({
-    value: new FormControl(),
-    highValue: new FormControl()
-  });
+  form: FormGroup ;
  
   obs:Subscription;
   obs2:Subscription;
+
+  ngOnChanges(changes:SimpleChanges){
+    if(changes){
+      this.form = new FormGroup({
+        value: new FormControl(this.min),
+        highValue: new FormControl(this.max)
+      });
+    }
+  }
  
   ngOnInit() {
     this.obs2=this.form.valueChanges
