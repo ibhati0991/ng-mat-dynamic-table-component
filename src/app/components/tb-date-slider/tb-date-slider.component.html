@@ -8,15 +8,14 @@
           class="range-selected"
         ></span>
       </div>
-      <div class="range-input">
+      <div class="range-input" [formGroup]="form">
         <input
           type="range"
           class="min"
           [attr.min]="min"
           [attr.max]="max"
           [attr.step]="step"
-          [(ngModel)]="value"
-          (ngModelChange)="upateRange($event, 'value')"
+          formControlName="value" 
         />
         <input
           type="range"
@@ -24,8 +23,7 @@
           [attr.min]="min"
           [attr.max]="max"
           [attr.step]="step"
-          [(ngModel)]="highValue"
-          (ngModelChange)="upateRange($event, 'highValue')"
+          formControlName="highValue" 
         />
       </div>
     </div>
