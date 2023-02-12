@@ -47,7 +47,7 @@ export class TbDateSliderComponent implements OnInit ,OnChanges,OnDestroy {
 
 
   updateRangeBar(){
-    this.left = `${((this.form.controls.value.value-this.sliderOption.min)/(this.sliderOption.max-this.sliderOption)) * 100}%`;
+    this.left = `${((this.form.controls.value.value-this.sliderOption.min)/(this.sliderOption.max-this.sliderOption.min)) * 100}%`;
     this.right = `${((this.sliderOption.max-this.form.controls.highValue.value)/(this.sliderOption.max-this.sliderOption.min)) * 100}%`;
   }
 }
