@@ -25,7 +25,7 @@ export class TbDateSliderComponent implements OnInit ,OnChanges,OnDestroy {
   obs2:Subscription;
 
   ngOnChanges(changes:SimpleChanges){
-    if(changes){
+    if(changes.min || changes.max){
       this.form = new FormGroup({
         value: new FormControl(this.min),
         highValue: new FormControl(this.max)
@@ -53,6 +53,5 @@ export class TbDateSliderComponent implements OnInit ,OnChanges,OnDestroy {
   updateRangeBar(){
     this.left = `${((this.form.controls.value.value-this.min)/(this.max-this.min)) * 100}%`;
     this.right = `${((this.max-this.form.controls.highValue.value)/(this.max-this.min)) * 100}%`;
-    console.log(this.left,this.right)
   }
 }
