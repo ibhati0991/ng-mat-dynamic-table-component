@@ -13,6 +13,9 @@ export class AppComponent extends TbMatTableBaseDirective {
     min : (new Date(2019, 0, 1).getTime() / 1000),
     max :(new Date().getTime() / 1000),
     step : 86400,
+    translate: (value: number): string => {
+      return new Date(value * 1000).toDateString().toString().substring(3);
+    }
   };
  
   dateChanged(event){
