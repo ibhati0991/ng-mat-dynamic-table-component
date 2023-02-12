@@ -8,7 +8,7 @@
     ></tb-header>
   </div> -->
   <div class="col-12">
-    <tb-date-slider></tb-date-slider>
+    <tb-date-slider [min]="min" [max]="max" [step]="step" (valueChange)="dateChanged($event)" ></tb-date-slider>
   </div>
 </div>
 <!-- <div class="row">

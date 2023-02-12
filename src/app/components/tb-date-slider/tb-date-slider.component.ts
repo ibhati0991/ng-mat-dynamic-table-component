@@ -8,9 +8,9 @@ import { debounceTime, Subscription } from 'rxjs';
   styleUrls: ['./tb-date-slider.component.css'],
 })
 export class TbDateSliderComponent implements OnInit ,OnChanges,OnDestroy {
-  @Input()min: number = 0;
-  @Input()max: number = 100;
-  @Input()step: number = 1;
+  @Input()min: number ;
+  @Input()max: number ;
+  @Input()step: number;
 
   @Output()valueChange = new EventEmitter();
 
