@@ -31,6 +31,7 @@ export class TbDateSliderComponent implements OnInit ,OnChanges,OnDestroy {
         highValue: new FormControl(this.max)
       });
       this.updateRangeBar()
+      
     }
   }
  
@@ -48,8 +49,10 @@ export class TbDateSliderComponent implements OnInit ,OnChanges,OnDestroy {
     this.obs2.unsubscribe();
   }
 
+
   updateRangeBar(){
-    this.left = `${(this.form.controls.value.value/this.max) * 100}%`;
-    this.right = `${100 - (this.form.controls.highValue.value/this.max) * 100}%`;
+    this.left = `${((this.form.controls.value.value-this.min)/(this.max-this.min)) * 100}%`;
+    this.right = `${100 - ((this.max-this.form.controls.highValue.value)/(this.max-this.min)) * 100}%`;
+    console.log( this.left,this.right)
   }
 }
