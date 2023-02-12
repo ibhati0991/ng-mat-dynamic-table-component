@@ -52,7 +52,7 @@ export class TbDateSliderComponent implements OnInit ,OnChanges,OnDestroy {
 
   updateRangeBar(){
     this.left = `${((this.form.controls.value.value-this.min)/(this.max-this.min)) * 100}%`;
-    this.right = `${100 - ((this.max-this.form.controls.highValue.value)/(this.max-this.min)) * 100}%`;
-    console.log( this.left,this.right)
+    this.right = `${((this.max-this.form.controls.highValue.value)/(this.max-this.min)) * 100}%`;
+    console.log(this.left,this.right)
   }
 }
