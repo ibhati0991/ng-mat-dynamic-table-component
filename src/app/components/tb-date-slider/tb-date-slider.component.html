@@ -7,7 +7,14 @@
           [style.right]="right"
           class="range-selected"
         ></span>
+        <div class="bubble" [style.left]="left">
+          {{ form.controls.value.value }}
+        </div>
+        <div class="bubble" [style.right]="right">
+          {{ form.controls.highValue.value }}
+        </div>
       </div>
+
       <div class="range-input" [formGroup]="form">
         <input
           type="range"
@@ -15,15 +22,16 @@
           [attr.min]="min"
           [attr.max]="max"
           [attr.step]="step"
-          formControlName="value" 
+          formControlName="value"
         />
+        <output class="bubble"></output>
         <input
           type="range"
           class="max"
           [attr.min]="min"
           [attr.max]="max"
           [attr.step]="step"
-          formControlName="highValue" 
+          formControlName="highValue"
         />
       </div>
     </div>

@@ -45,20 +45,10 @@
   -moz-appearance: none;
 }
 
-.range-price {
-  margin: 30px 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.range-price label {
-  margin-right: 5px;
-}
-.range-price input {
-  width: 40px;
-  padding: 5px;
-}
-.range-price input:first-of-type {
-  margin-right: 15px;
+.bubble{
+  position: absolute; 
+  top: -26px;
+  font-size: 8px;
+  line-height: 25px;
+  pointer-events: none;
 }
