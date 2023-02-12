@@ -30,6 +30,7 @@ export class TbDateSliderComponent implements OnInit ,OnChanges,OnDestroy {
         value: new FormControl(this.min),
         highValue: new FormControl(this.max)
       });
+      this.updateRangeBar()
     }
   }
  
