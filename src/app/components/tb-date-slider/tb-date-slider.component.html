@@ -19,18 +19,18 @@
         <input
           type="range"
           class="min"
-          [attr.min]="min"
-          [attr.max]="max"
-          [attr.step]="step"
+          [attr.min]="this.sliderOption.min"
+          [attr.max]="this.sliderOption.max"
+          [attr.step]="this.sliderOption.step"
           formControlName="value"
         />
         <output class="bubble"></output>
         <input
           type="range"
           class="max"
-          [attr.min]="min"
-          [attr.max]="max"
-          [attr.step]="step"
+          [attr.min]="this.sliderOption.min"
+          [attr.max]="this.sliderOption.max"
+          [attr.step]="this.sliderOption.step"
           formControlName="highValue"
         />
       </div>

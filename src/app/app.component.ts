@@ -9,9 +9,12 @@ import { BaseService } from './services/base.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent extends TbMatTableBaseDirective {
-  min = new Date(2019, 0, 1).getTime() / 1000;
-  max = new Date().getTime() / 1000;
-  step = 86400;
+  rangeSliderOptions = {
+    min : (new Date(2019, 0, 1).getTime() / 1000),
+    max :(new Date().getTime() / 1000),
+    step : 86400,
+  };
+ 
   dateChanged(event){
     console.log(event)
   }

@@ -8,10 +8,7 @@ import { debounceTime, Subscription } from 'rxjs';
   styleUrls: ['./tb-date-slider.component.css'],
 })
 export class TbDateSliderComponent implements OnInit ,OnChanges,OnDestroy {
-  @Input()min: number ;
-  @Input()max: number ;
-  @Input()step: number;
-
+  @Input()sliderOption: any ;
   @Output()valueChange = new EventEmitter();
 
   protected left: any ;
@@ -25,13 +22,12 @@ export class TbDateSliderComponent implements OnInit ,OnChanges,OnDestroy {
   obs2:Subscription;
 
   ngOnChanges(changes:SimpleChanges){
-    if(changes.min || changes.max){
+    if(changes.sliderOption){
       this.form = new FormGroup({
-        value: new FormControl(this.min),
-        highValue: new FormControl(this.max)
+        value: new FormControl(this.sliderOption.min),
+        highValue: new FormControl(this.sliderOption.max)
       });
       this.updateRangeBar()
-      
     }
   }
  
@@ -51,7 +47,7 @@ export class TbDateSliderComponent implements OnInit ,OnChanges,OnDestroy {
 
 
   updateRangeBar(){
-    this.left = `${((this.form.controls.value.value-this.min)/(this.max-this.min)) * 100}%`;
-    this.right = `${((this.max-this.form.controls.highValue.value)/(this.max-this.min)) * 100}%`;
+    this.left = `${((this.form.controls.value.value-this.sliderOption.min)/(this.sliderOption.max-this.sliderOption)) * 100}%`;
+    this.right = `${((this.sliderOption.max-this.form.controls.highValue.value)/(this.sliderOption.max-this.sliderOption.min)) * 100}%`;
   }
 }
