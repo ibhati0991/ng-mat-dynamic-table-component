@@ -1,5 +1,22 @@
 <div class="row">
   <div class="col-12 p-5">
+    <div class="d-lg-flex justify-content-lg-between align-items-lg-center w-100 ">
+      <span><strong>Timeframe</strong></span>
+      <div class="timeframe">
+        <button aria-label="academic Year" mat-button color="primary" (click)="setAcademicYear()">
+          Academic Year
+        </button>
+        <button aria-label="Load" mat-button color="primary" (click)="applySavedDateRange()">
+          Load
+        </button>
+        <button aria-label="Save" mat-button color="primary" (click)="saveDateRange()">
+          Save
+        </button>
+        <button aria-label="Clear" mat-button color="primary" (click)="deleteDateRange()">
+          Clear
+        </button>
+      </div>
+    </div>
     <div class="range">
       <div class="range-slider">
         <span

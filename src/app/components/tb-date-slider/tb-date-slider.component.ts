@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, Subscription } from 'rxjs';
+import { ObjectStorage } from '../../services/localstorage.service';
 
 @Component({
   selector: 'tb-date-slider',
@@ -72,6 +73,7 @@ export class TbDateSliderComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy() {
     this.obs.unsubscribe();
     this.obs2.unsubscribe();
+    this.obs3.unsubscribe();
   }
 
   updateRangeBar() {
@@ -86,4 +88,40 @@ export class TbDateSliderComponent implements OnInit, OnChanges, OnDestroy {
       100
     }%`;
   }
+
+  setAcademicYear() {
+    let today = new Date();
+    let dateOffset = 0;
+    let year = today.getUTCFullYear();
+    if (today.getMonth() < 7)
+      dateOffset = -1;
+    // this.floor = new Date(year + dateOffset, 7, 1);
+    // this.ceil = new Date(year + dateOffset + 1, 6, 31);
+  }
+
+  saveDateRange() {
+    let data = {
+      // value: this.value,
+      // highValue: this.highValue
+    };
+    ObjectStorage.setObject('date-range-slider', data);
+  }
+
+  applySavedDateRange() {
+    let data = ObjectStorage.getObject('date-range-slider');
+    if (data) {
+      // this.floor = data.floor;
+      // this.ceil = data.ceil;
+      // this.value = data.value;
+      // this.highValue = data.highValue;
+      // this.convertDate();
+      return true;
+    }
+    return false;
+  }
+
+  deleteDateRange() {
+    ObjectStorage.removeObject('date-range-slider');
+  }
+
 }
